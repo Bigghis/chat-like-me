@@ -1,0 +1,72 @@
+# Telegram Export Data
+result.json
+*.json
+!scripts/**/*.json
+
+# Training Data
+*.jsonl
+training_data/
+datasets/
+
+# Chat Exports
+conversation_*.json
+chat_*.json
+out-*.json
+
+# Generated Lists
+chats_list.txt
+chats_list.json
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+*.log
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Temporary files
+*.tmp
+*.bak
+temp/
+
