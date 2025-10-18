@@ -1,6 +1,6 @@
 # Chat Like Me 💬
 
-Create your own personalized AI chatbot that talks just like you, training an LLM that talks just like you using your own telegram chats.
+Create your own personalized AI chatbot that talks just like you, training an LLM using your own telegram chats.
 
 ## Overview
 
