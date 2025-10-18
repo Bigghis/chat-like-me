@@ -1,10 +1,14 @@
 # Chat Like Me 💬
 
-Transform your Telegram chat history into training datasets for fine-tuning Large Language Models to chat like you!
+Create your own personalized AI chatbot that talks just like you! This project provides a complete end-to-end solution: from exporting your Telegram chats, to fine-tuning a language model, to deploying it as a Telegram bot.
 
 ## Overview
 
-**Chat Like Me** is a collection of Python scripts that help you convert exported Telegram conversations into properly formatted training data for LLM fine-tuning. Create a personalized chatbot that mimics your unique writing style and communication patterns.
+**Chat Like Me** is a complete toolkit for creating a personalized AI chatbot:
+
+1. 📊 **Data Preparation Scripts** - Convert Telegram chat exports into LLM training datasets
+2. 🎯 **Fine-tuning Configuration** - Ready-to-use Axolotl config for model training
+3. 🤖 **Telegram Bot** - Deploy your fine-tuned model as an interactive Telegram bot
 
 ### What Can You Do With This?
 
@@ -15,7 +19,8 @@ Transform your Telegram chat history into training datasets for fine-tuning Larg
 
 ## Features
 
-- ✨ Easy-to-use command-line interface
+### Data Preparation
+- ✨ Easy-to-use command-line scripts
 - 🔍 Parse and discover all chats in your Telegram export
 - 📤 Extract specific conversations by ID
 - 🎯 Smart filtering by message count, chat type, and more
@@ -23,6 +28,16 @@ Transform your Telegram chat history into training datasets for fine-tuning Larg
 - 📝 Automatic formatting into OpenAI chat template format (JSONL)
 - 👥 Support for both personal and group chats
 - 🧹 Built-in data cleaning and validation
+
+### Fine-tuning
+- 🔧 Pre-configured Axolotl setup for efficient training
+- 💾 Optimized LoRA/QLoRA configurations
+- 🚀 Works with popular base models (Llama, Mistral, etc.)
+
+### Deployment
+- 🤖 Ready-to-deploy Telegram bot
+- 💬 Natural conversation interface
+- ⚡ Efficient inference with your fine-tuned model
 
 ## Quick Start
 
@@ -90,14 +105,51 @@ python scripts/prepare_training_data.py result.json \
 
 ### Step 5: Fine-tune Your Model
 
-Use the generated `training_data.jsonl` file with your preferred fine-tuning platform:
+Use the included Axolotl configuration to fine-tune your model:
+
+```bash
+# Configure your training parameters in config/axolotl_config.yml
+# Then run the training (see Fine-tuning section below)
+```
+
+Or use the generated `training_data.jsonl` file with your preferred fine-tuning platform:
+- Axolotl (included configuration)
 - OpenAI API
 - Hugging Face
 - Your custom training pipeline
 
-## Scripts Documentation
+### Step 6: Deploy Your Telegram Bot
 
-### 1. `parse_chats.py` - Chat Discovery
+Once your model is trained, deploy it as a Telegram bot:
+
+```bash
+# Configure your bot token in bot/config.py
+# Run the bot (see Deployment section below)
+python bot/telegram_bot.py
+```
+
+## Project Structure
+
+```
+chat-like-me/
+├── scripts/              # Data preparation scripts
+│   ├── parse_chats.py
+│   ├── extract_conversation.py
+│   └── prepare_training_data.py
+├── config/              # Fine-tuning configurations
+│   └── axolotl_config.yml
+├── bot/                 # Telegram bot source code
+│   ├── telegram_bot.py
+│   └── config.py
+├── README.md
+└── LICENSE
+```
+
+## Detailed Documentation
+
+### Part 1: Data Preparation Scripts
+
+#### 1. `parse_chats.py` - Chat Discovery
 
 Parse the Telegram export to identify all available chats.
 
@@ -116,7 +168,7 @@ python scripts/parse_chats.py --name "Marco" --input result.json
 python scripts/parse_chats.py --type personal_chat --input result.json
 ```
 
-### 2. `extract_conversation.py` - Conversation Extraction
+#### 2. `extract_conversation.py` - Conversation Extraction
 
 Extract a specific conversation by ID into a separate file.
 
@@ -130,7 +182,7 @@ python scripts/extract_conversation.py result.json --id 168168628 --output my_ch
 python scripts/extract_conversation.py result.json --list
 ```
 
-### 3. `prepare_training_data.py` - Training Data Preparation
+#### 3. `prepare_training_data.py` - Training Data Preparation
 
 Transform conversations into OpenAI-compatible training format.
 
@@ -174,13 +226,42 @@ The script generates a JSONL file where each line represents a complete conversa
 ]}
 ```
 
+### Part 2: Fine-tuning with Axolotl
+
+_(Configuration files and detailed instructions coming soon)_
+
+The `config/` directory will contain pre-configured Axolotl YAML files optimized for training a personalized chatbot on your data.
+
+**Key features:**
+- LoRA/QLoRA configuration for efficient training
+- Optimized hyperparameters for conversational models
+- Support for various base models (Llama, Mistral, etc.)
+- Memory-efficient training on consumer GPUs
+
+### Part 3: Telegram Bot Deployment
+
+_(Bot source code and setup instructions coming soon)_
+
+The `bot/` directory will contain a complete Telegram bot implementation that:
+- Loads your fine-tuned model
+- Handles conversations naturally
+- Supports context management
+- Includes deployment scripts
+
 ## How It Works
 
-1. **Parsing**: The scripts parse your Telegram JSON export to identify all conversations
-2. **Filtering**: Removes service messages, automated messages, and applies your filtering criteria
-3. **Grouping**: Intelligently groups messages into conversation turns based on time windows
-4. **Formatting**: Converts the data into the standard chat template format used by LLMs
-5. **Output**: Generates a JSONL file ready for fine-tuning
+### End-to-End Pipeline
+
+1. **📥 Data Export**: Export your Telegram chat history to JSON
+2. **🔍 Data Parsing**: Parse and discover available conversations
+3. **🎯 Data Filtering**: Filter by message count, chat type, and relevance
+4. **📊 Data Processing**: 
+   - Remove service/automated messages
+   - Group messages into conversation turns
+   - Format for LLM training
+5. **🎓 Model Fine-tuning**: Train a model on your conversational style using Axolotl
+6. **🚀 Bot Deployment**: Deploy your personalized model as a Telegram bot
+7. **💬 Interact**: Chat with your AI clone!
 
 ## Data Privacy & Security
 
@@ -199,28 +280,43 @@ The script generates a JSONL file where each line represents a complete conversa
 
 ## Use Cases
 
-### Personal Chatbot
-Train a model that can respond to messages in your style when you're busy.
+### 🤖 Personal AI Assistant
+Deploy a bot that responds to messages in your style when you're busy or unavailable.
 
-### Writing Assistant
-Create a tool that helps you draft messages in your unique voice.
+### ✍️ Writing Assistant
+Generate message drafts and responses in your unique voice.
 
-### Communication Analysis
-Understand your conversation patterns and communication style.
+### 📊 Communication Analysis
+Study and understand your conversation patterns and communication style.
 
-### Creative Projects
-Build interactive experiences based on your conversational personality.
+### 🎭 Digital Clone
+Create an interactive AI version of yourself for creative projects or experiments.
+
+### 🎓 Research & Learning
+Explore fine-tuning techniques and conversational AI development.
+
+## Project Status
+
+- ✅ **Data Preparation Scripts** - Complete and tested
+- 🚧 **Fine-tuning Configuration** - Coming soon
+- 🚧 **Telegram Bot** - Coming soon
 
 ## Troubleshooting
 
-### "No chats meet the criteria"
+### Data Preparation
+
+**"No chats meet the criteria"**  
 Try lowering the `--min-messages` threshold or check if your export contains valid conversations.
 
-### "Unexpected JSON structure"
+**"Unexpected JSON structure"**  
 Ensure you exported in JSON format from Telegram Desktop, not mobile.
 
-### Unicode/Encoding Issues
+**Unicode/Encoding Issues**  
 The scripts handle UTF-8 encoding automatically, but ensure your terminal supports Unicode.
+
+### Fine-tuning & Deployment
+
+_(Troubleshooting guides will be added as features are released)_
 
 ## Contributing
 
