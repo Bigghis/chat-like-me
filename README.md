@@ -20,6 +20,8 @@ chat-like-me/
 │   ├── parse_chats.py
 │   ├── extract_conversation.py
 │   └── prepare_training_data.py
+├── axolotl-config/     # Axolotl config files
+│   └── nousresearch-llama-3.1.yaml
 ├── README.md
 └── LICENSE
 ```
